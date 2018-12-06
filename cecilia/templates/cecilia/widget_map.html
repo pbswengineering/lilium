@@ -1,0 +1,21 @@
+{% comment %}
+cecilia/widget_map.html
+~~~~~~~~~~~~~~~~~~~~~~~
+
+HTML code to include to show the sensor positioning within the home.
+It requires a sensor object.
+
+:copyright: (c) 2018 Paolo Paolo Bernardi.
+:license: GNU AGPL version 3, see LICENSE for more details.
+{% endcomment %}
+{% load staticfiles %}
+<div class="col-md-4" style="margin-bottom: 1em">
+    <div id="map-{{ sensor.name }}" class="card">
+        <div class="card-header">
+            <i class="fas fa-home">&nbsp;</i>Map
+        </div>
+        <div class="card-body">
+            <img src="{{ img_url }}" style="width: 100%">
+        </div>
+    </div>
+</div>

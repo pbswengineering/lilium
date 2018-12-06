@@ -1,0 +1,27 @@
+# vim: tabstop=8 expandtab shiftwidth=4 softtabstop=4
+
+#
+# Makefile.local
+# ~~~~~~~~~~~~~~
+#
+# Security-sensitive and machine-dependent settings for the Makefile.
+# This file MUST NOT be committed.
+#
+# :copyright: (c) 2018 Paolo Paolo Bernardi.
+# :license: GNU AGPL version 3, see LICENSE for more details.
+#
+
+prod_ssh_port = '4321'
+prod_ssh_user = 'user'
+prod_ssh_host = 'some.host.name.or.ip'
+prod_ssh_directory = '/directory/where/lilium/is/deployed'
+
+prod_mysqldump = '/usr/bin/mysqldump'
+prod_mysqlhost = '127.0.0.1'
+prod_mysqluser = 'prod.lilium.db.user'
+prod_mysqlpass = 'prod.lilium.db.password'
+prod_mysqldb = 'prod.lilium.db.name'
+
+local_mysqlhost = '127.0.0.1'
+local_mysqluser = 'local.lilium.db.user'
+local_mysqlpass = 'local.lilium.db.password'

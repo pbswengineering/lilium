@@ -1,0 +1,65 @@
+{% extends 'lilium/base.html' %}
+{% comment %}
+registration/login.html
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Lilium login page (vaguely inspired by the login form of Google).
+
+:copyright: (c) 2018 Paolo Paolo Bernardi.
+:license: GNU AGPL version 3, see LICENSE for more details.
+{% endcomment %}
+{% load staticfiles %}
+
+<h2>Login</h2>
+
+{% block title %}Login{% endblock %}
+
+{% block navigation %}
+    {% with "login" as navigation %}
+        {{ block.super }}
+    {% endwith %}
+{% endblock %}
+
+{% block main %}
+    <div class="row">
+        <div class="col-lg-4 offset-lg-4">
+            <div class="card shadow-sm" style="padding: 1em; margin: 2em 0">
+                <form id="login-form" method="post">
+                    {% csrf_token %}
+                    <div class="text-center mb-4">
+                        <img class="mb-4" style="margin-top: 1em" src="{% static 'img/lilium-logo-negative-72.png' %}" alt=""
+                             width="72" height="72">
+                        <h1 class="h3 mb-3 font-weight-normal">Sign in</h1>
+                        <h4 class="h5 mb-3 font-weight-normal">to continue to Lilium</h4>
+                        {% if form.errors %}
+                            <div class="alert alert-danger" role="alert">
+                                Your username and password didn't match, please try again.
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        <label for="id_username">Username</label>
+                        <input id="id_username"
+                               name="username"
+                               type="text"
+                               class="form-control"
+                               placeholder="Enter your username"
+                               autofocus>
+                    </div>
+                    <div class="form-group">
+                        <label for="id_password">Password</label>
+                        <input id="id_password"
+                               name="password"
+                               type="password"
+                               class="form-control"
+                               placeholder="Enter your password">
+                    </div>
+                    <div class="float-right" style="margin: 1em 0">
+                        <button class="btn btn-primary" style="min-width: 7em" type="submit">Next</button>
+                        <input type="hidden" name="next" value="{{ next }}"/>
+                    </div>
+                </form>
+            </div> <!-- .card -->
+        </div> <!-- .col -->
+    </div> <!-- .row -->
+{% endblock %}

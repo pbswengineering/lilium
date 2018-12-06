@@ -1,0 +1,23 @@
+{% comment %}
+cecilia/widget_chart.html
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+HTML code to include where a chart should be shown.
+It requires a sensor object.
+
+:copyright: (c) 2018 Paolo Paolo Bernardi.
+:license: GNU AGPL version 3, see LICENSE for more details.
+{% endcomment %}
+{% load cecilia_title %}
+
+<div class="col-md" style="margin-bottom: 1em">
+    <div id="chart-{{ sensor.name }}" class="card">
+        <div class="card-header">
+            <i class="fas fa-chart-line">&nbsp;</i>{{ sensor.name | cecilia_title }} <span class="extra-title"></span>
+        </div>
+        <div class="card-body">
+            <div class="chart-container">
+            </div>
+        </div>
+    </div>
+</div>

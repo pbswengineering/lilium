@@ -1,0 +1,47 @@
+{% extends 'lilium/base.html' %}
+
+{% comment %}
+cecilia/index.html
+~~~~~~~~~~~~~~~~~~
+
+Cecilia dashboard: live reporting and ~24h charts for all configured sensors.
+
+:copyright: (c) 2018 Paolo Paolo Bernardi.
+:license: GNU AGPL version 3, see LICENSE for more details.
+{% endcomment %}
+{% load staticfiles %}
+
+{% block title %}Cecilia{% endblock %}
+
+{% block navigation %}
+    {% with "cecilia" as navigation %}
+        {{ block.super }}
+    {% endwith %}
+{% endblock %}
+
+{% block main %}
+    <div class="row">
+        {% for sensor in sensors %}
+            {% include 'cecilia/widget_live_sensor.html' %}
+        {% endfor %}
+    </div>
+    <div class="row">
+        {% for sensor in sensors %}
+            {% include 'cecilia/widget_chart.html' %}
+        {% endfor %}
+    </div>
+    <div class="row">
+        <div class="col text-right">
+            <small class="countdown"></small>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script src="{% static 'js/cecilia/shared.js' %}"></script>
+    <script src="{% static 'js/cecilia/index.js' %}"></script>
+    <script>
+        var url_all_sensor_data = "{% url 'cecilia:api_all_sensor_data' %}";
+        init_cecilia_index(url_all_sensor_data);
+    </script>
+{% endblock %}

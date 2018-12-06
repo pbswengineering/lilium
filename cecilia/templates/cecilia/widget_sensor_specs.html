@@ -1,0 +1,28 @@
+{% comment %}
+cecilia/widget_sensor_specs.html
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+HTML code to include to show the specifications of the sensor.
+It requires a sensor object.
+
+:copyright: (c) 2018 Paolo Paolo Bernardi.
+:license: GNU AGPL version 3, see LICENSE for more details.
+{% endcomment %}
+<div class="col-md" style="margin-bottom: 1em">
+    <div id="specs-widget-{{ sensor.name }}" class="card card-grey">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-3">
+                    <span class="icon-ok fa fa-wifi fa-5x"></span>
+                </div>
+                <div class="col-9 text-right">
+                    <div class="huge">
+                        {{ sensor.type }}
+                        <br>
+                    </div>
+                    <span class="last-update">{{ sensor.specs }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+{% extends 'lilium/base.html' %}
+
+{% comment %}
+cecilia/sensor_details.html
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Detail page of a sensor: live data, sensor specifications, ~7 days graph
+and home positioning map.
+
+:copyright: (c) 2018 Paolo Paolo Bernardi.
+:license: GNU AGPL version 3, see LICENSE for more details.
+{% endcomment %}
+{% load staticfiles %}
+{% load cecilia_title %}
+
+{% block title %}{{ sensor.name | title }} - Cecilia{% endblock %}
+
+{% block navigation %}
+    {% with "cecilia" as navigation %}
+        {{ block.super }}
+    {% endwith %}
+{% endblock %}
+
+{% block main %}
+    <h2 class="page-header" style="font-weight: normal">{{ sensor.name | cecilia_title }}</h2>
+    <div class="row">
+        {% with no_link=True %}
+            {% include 'cecilia/widget_live_sensor.html' %}
+        {% endwith %}
+        {% include 'cecilia/widget_sensor_specs.html' %}
+    </div>
+    <div class="row">
+        {% include 'cecilia/widget_map.html' %}
+        {% include 'cecilia/widget_chart.html' %}
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script src="{% static 'js/cecilia/shared.js' %}"></script>
+    <script src="{% static 'js/cecilia/sensor_details.js' %}"></script>
+    <script>
+        var url_sensor_data = "{% url 'cecilia:api_sensor_data' sensor_name=sensor.name %}";
+        init_cecilia_sensor(url_sensor_data);
+    </script>
+{% endblock %}

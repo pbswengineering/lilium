@@ -1,0 +1,82 @@
+# vim: tabstop=8 expandtab shiftwidth=4 softtabstop=4
+# -*- coding: utf-8 -*-
+
+"""
+lilium.local_settings
+~~~~~~~~~~~~~~~~~~~~~
+
+Security-sensitive and machine-dependent settings for Lilium.
+This file, required by the standard settings.py, must NOT BE committed.
+
+:copyright: (c) 2018 Paolo Paolo Bernardi.
+:license: GNU AGPL version 3, see LICENSE for more details.
+"""
+
+# Base URL of the production web application, used by
+# pbots/tools/trigger-pbot.py (the script for cron)
+
+BASE_URL = "http://192.168.1.10:1234"
+
+# User and password for external API calls, used by
+# pbots/tools/trigger_pbots.py (the script for cron)
+
+API_USERNAME = "username"
+API_PASSWORD = "password"
+
+# Database
+# https://docs.djangoproject.com/en/2.1/ref/settings/#databases
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+    }
+}
+
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.mysql",
+#         "NAME": "lilium",
+#         "USER": "lilium_db_user",
+#         "PASSWORD": "lilium_db_password",
+#     }
+# }
+
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "mysql.connector.django",  # pip install mysql-connector-python
+#         "NAME": "lilium",
+#         "USER": "lilium_db_user",
+#         "PASSWORD": "lilium_db_password",
+#     }
+# }
+
+# Email
+# https://docs.djangoproject.com/en/2.1/topics/email/
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_HOST_USER = "your_application_email@gmail.com"
+EMAIL_HOST_PASSWORD = "yourpassword"
+EMAIL_PORT = 587
+EMAIL_FROM = "your_application_email@gmail.com"
+EMAIL_REPLY_TO = ["some_other_email@gmail.com"]
+
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "localhost",
+    "something_else",
+]
+
+# Custom floor maps
+
+CECILIA_BLUEPRINTS = {
+    "living_room": "/directory/map_living_room.png",
+    "attic": "/directory/map_attic.png",
+    "basement": "/directory/map_basement.png",
+}
+
+# PhantomJS and CasperJS executables (required by PBOTS)
+
+PHANTOMJS_EXE = "/usr/bin/phantomjs"
+CASPERJS_EXE = "/usr/local/bin/casperjs"

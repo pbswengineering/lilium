@@ -1,0 +1,42 @@
+{% comment %}
+cecilia/live_sensor.html
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+HTML code to include to show the live readings of a sensor.
+It requires a sensor object.
+
+:copyright: (c) 2018 Paolo Paolo Bernardi.
+:license: GNU AGPL version 3, see LICENSE for more details.
+{% endcomment %}
+{% load cecilia_title %}
+<div class="col-md" style="margin-bottom: 1em">
+    <div id="live-widget-{{ sensor.name }}" class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-3">
+                    <span class="icon-warning fa fa-exclamation-triangle fa-5x hidden"></span>
+                    <span class="icon-ok fa fa-home fa-5x"></span>
+                </div>
+                <div class="col-9 text-right">
+                    <div class="huge">
+                        <span class="temperature">...</span>
+                        <span class="d-none d-lg-inline">&nbsp;-&nbsp;</span>
+                        <span class="humidity">...</span>
+                        <br>
+                    </div>
+                    <span class="badge badge-warning hidden">Unreachable</span>
+                    <span class="last-update">....</span>
+                </div>
+            </div>
+        </div>
+        {% if not no_link %}
+            <div class="card-footer">
+                <a href="{% url 'cecilia:sensor_details' sensor_name=sensor.name %}">
+                    <span class="float-left">{{ sensor.name | cecilia_title }}</span>
+                    <span class="float-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </a>
+            </div>
+        {% endif %}
+    </div>
+</div>

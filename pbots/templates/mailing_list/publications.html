@@ -1,0 +1,55 @@
+{% comment %}
+mailing_list/publications.html
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+HTML body for the email used to notify new publications.
+
+:copyright: (c) 2018 Paolo Paolo Bernardi.
+:license: GNU AGPL version 3, see LICENSE for more details.
+{% endcomment %}
+<body style="font-family: 'Proxima Nova Regular','Segoe UI',Roboto,'Droid Sans','Helvetica Neue',Arial,sans-serif; color: #333; background-color: #fff;">
+<h1 style="text-align: center; font-size: 1.5em">{{ title }}</h1>
+<div style="text-align: center; margin-bottom: 1em">
+    <a href="https://www.bernardi.cloud/">
+        <img src="cid:logo">
+    </a>
+</div>
+{% for pub in publications %}
+<table border="0"
+       cellpadding="20"
+       cellspacing="0"
+       style="background-color: #f1f1f1; border: 1px #ddd solid; width: 90%; text-align: center; margin: 0 5%">
+    <tr>
+        <td>
+            <p>
+                <em>{{ pub.publisher }}</em>
+            </p>
+            <p>
+                <strong>
+                    {% if pub.url %}
+                        <a style="color: #41b7d8; text-decoration: none;" href="{{ pub.url }}">{{ pub.subject }}</a>
+                    {% else %}
+                        {{ pub.subject }}
+                    {% endif %}
+                </strong>
+            </p>
+
+            {% if pub.date_start and pub.date_end %}
+            <p>Pubblicato dal {{ pub.date_start }} al {{ pub.date_end }}</p>
+            {% elif pub.date_start %}
+            <p>Pubblicato il {{ pub.date_start }}</p>
+            {% endif %}
+
+            {% for att in pub.publicationattachment_set.all %}
+            <p>
+                <a style="color: #41b7d8; text-decoration: none;" href="{{ att.url }}">
+                    {{ att.name }}
+                </a>
+            </p>
+            {% endfor %}
+        </td>
+    </tr>
+</table>
+<br>
+{% endfor %}
+</body>

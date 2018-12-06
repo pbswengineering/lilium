@@ -1,0 +1,129 @@
+/* vim: tabstop=8 expandtab shiftwidth=4 softtabstop=4 */
+
+/**
+ * lilium.css
+ * ~~~~~~~~~~
+ *
+ * Lilium is based on Bootstrap 4. 
+ * This file contains some additional styling rules shared by all Lilium apps.
+ *
+ * @copyright (c) 2018 Paolo Paolo Bernardi.
+ * @license GNU AGPL version 3, see LICENSE for more details.
+ */
+
+body {
+    color: rgb(89, 89, 92);
+}
+
+.page-header {
+    padding-bottom: 9px;
+    margin: 40px 0 20px;
+    border-bottom: 1px solid #eee;
+}
+
+footer {
+    color: #AAA;
+    margin-bottom: 1em;
+}
+
+.hidden {
+    display: none;
+}
+
+.huge {
+    font-size: 32px;
+}
+
+.chart-container {
+    width: 100%;
+    height: 300px;
+}
+
+.canvasjs-chart-credit {
+    display: none;
+}
+
+.card-green {
+    border-color: #5cb85c;
+}
+
+.card-green > .card-body {
+    background-color: #73a900;
+    border-color: #73a900;
+    color: #fff;
+}
+
+.card-green > .card-footer {
+    color: #5cb85c;
+}
+
+.card-green > .card-footer a {
+    color: #5cb85c;
+}
+
+.card-blue {
+    border-color: #3498db;
+}
+
+.card-blue > .card-body {
+    background-color: #3498db;
+    border-color: #3498db;
+    color: #fff;
+}
+
+.card-blue > .card-footer {
+    color: #337ab7;
+}
+
+.card-blue > .card-footer a {
+    color: #337ab7;
+}
+
+.card-yellow {
+    border-color: #f0ad4e;
+}
+
+.card-yellow > .card-body {
+    background-color: #f7a716;
+    border-color: #f7a716;
+    color: #fff;
+}
+
+.card-yellow > .card-footer {
+    color: #f0ad4e;
+}
+
+.card-yellow > .card-footer a {
+    color: #f0ad4e;
+}
+
+.card-red {
+    border-color: #d9534f;
+}
+
+.card-red > .card-body {
+    background-color: #ff6b00;
+    border-color: #ff6b00;
+    color: #fff;
+}
+
+.card-red > .card-footer {
+    color: #d9534f;
+}
+
+.card-red > .card-footer a {
+    color: #d9534f;
+}
+
+.card-grey {
+    border-color: #ddd;
+}
+
+.card-grey > .card-body {
+    background-color: #f5f5f5;
+    border-color: #f5f5f5;
+}
+
+.extra-title {
+    font-size: 70%;
+}
