@@ -206,11 +206,13 @@ The data can be acquired both from Arduino Uno with network interfaces and from 
     # There is an implicit cast form bool to int (0/1) and an explicity (possible) cast from NoneType to bool
     selected_modes_count = bool(args.arduino) + bool(args.gpio) + bool(args.usb) + bool(args.test)
     if selected_modes_count == 0:
-        sys.stderr.write("ERROR: You must select a collection mode (--arduino=ARDUINO_IP, --gpio or --usb)")
+        sys.stderr.write(
+            "ERROR: You must select a collection mode (--arduino=ARDUINO_IP, --gpio or --usb)")
         parser.print_help(sys.stderr)
         sys.exit(1)
     elif selected_modes_count > 1:
-        sys.stderr.write("ERROR: You must select only one collection mode (--arduino=ARDUINO_IP, --gpio or --usb)")
+        sys.stderr.write(
+            "ERROR: You must select only one collection mode (--arduino=ARDUINO_IP, --gpio or --usb)")
         parser.print_help(sys.stderr)
         sys.exit(1)
     elif args.arduino:

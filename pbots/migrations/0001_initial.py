@@ -20,17 +20,14 @@ class Migration(migrations.Migration):
     """
     Create the Source, MailingListMember, Publication and PublicationAttachment tables.
     """
-
     initial = True
-
-    dependencies = [
-    ]
-
+    dependencies = []
     operations = [
         migrations.CreateModel(
             name='MailingListMember',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(
+                    auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=256)),
                 ('email', models.CharField(max_length=256)),
             ],
@@ -38,30 +35,36 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Publication',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(
+                    auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('url', models.CharField(blank=True, max_length=2048, null=True)),
                 ('number', models.CharField(blank=True, max_length=256, null=True)),
-                ('publisher', models.CharField(blank=True, max_length=256, null=True)),
+                ('publisher', models.CharField(
+                    blank=True, max_length=256, null=True)),
                 ('pub_type', models.CharField(blank=True, max_length=256, null=True)),
                 ('subject', models.CharField(blank=True, max_length=2048, null=True)),
-                ('date_start', models.CharField(blank=True, max_length=256, null=True)),
+                ('date_start', models.CharField(
+                    blank=True, max_length=256, null=True)),
                 ('date_end', models.CharField(blank=True, max_length=256, null=True)),
             ],
         ),
         migrations.CreateModel(
             name='PublicationAttachment',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(
+                    auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=1024)),
                 ('url', models.CharField(max_length=2048)),
-                ('publication', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='pbots.Publication')),
+                ('publication', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='pbots.Publication')),
             ],
         ),
         migrations.CreateModel(
             name='Source',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID',
-                                        unique=True)),
+                ('id', models.AutoField(
+                    auto_created=True, primary_key=True, serialize=False,
+                    verbose_name='ID', unique=True)),
                 ('name', models.CharField(max_length=256)),
                 ('command', models.CharField(max_length=1024)),
                 ('running', models.BooleanField(default=False)),
@@ -75,11 +78,13 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='publication',
             name='source',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='pbots.Source'),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to='pbots.Source'),
         ),
         migrations.AddField(
             model_name='mailinglistmember',
             name='source',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='pbots.Source'),
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE, to='pbots.Source'),
         ),
     ]

@@ -16,6 +16,10 @@ from django.urls import path
 
 from . import views
 
+# pylint: disable=invalid-name
+# Rationale:
+#   - app_name and urlpatterns are Django standard names.
+
 app_name = "pbots"
 urlpatterns = [
     path("", views.index, name="index"),

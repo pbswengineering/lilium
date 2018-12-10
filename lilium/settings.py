@@ -202,6 +202,11 @@ CECILIA_BLUEPRINTS = {}
 # https://www.agileleaf.com/blog/a-better-way-to-manage-settings-py-in-your-django-projects/
 
 try:
+    # pylint: disable=wildcard-import,unused-wildcard-import
+    # Rationale:
+    #   - Bulk-import of the local_settings variables on is done purpose
+    #     to allow seamless overwriting capability of settings parameters.
     from .local_settings import *
 except ImportError:
-    raise Exception("A local_settings.py file is required to run this project (see README.md)")
+    raise Exception(
+        "A local_settings.py file is required to run this project (see README.md)")

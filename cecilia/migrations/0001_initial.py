@@ -19,17 +19,17 @@ class Migration(migrations.Migration):
     """
     Create the Sensor and SensorReading tables.
     """
-
     initial = True
-
     dependencies = [
     ]
-
     operations = [
         migrations.CreateModel(
             name='Sensor',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True,
+                                        serialize=False,
+                                        verbose_name='ID')),
                 ('name', models.CharField(max_length=256)),
                 ('type', models.CharField(max_length=256)),
                 ('specs', models.CharField(max_length=256)),
@@ -38,11 +38,15 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='SensorReading',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True,
+                                        serialize=False,
+                                        verbose_name='ID')),
                 ('tstamp', models.DateTimeField()),
                 ('temperature', models.FloatField(blank=True, null=True)),
                 ('humidity', models.FloatField(blank=True, null=True)),
-                ('sensor', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='cecilia.Sensor')),
+                ('sensor', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE, to='cecilia.Sensor')),
             ],
         ),
     ]

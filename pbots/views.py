@@ -72,9 +72,11 @@ def status(request: HttpRequest) -> JsonResponse:
             else:
                 source["css_class"] = "table-success"
         if source["started_at"]:
-            source["started_at"] = source["started_at"].strftime("%Y-%m-%d %H:%M:%S")
+            source["started_at"] = source["started_at"].strftime(
+                "%Y-%m-%d %H:%M:%S")
         if source["finished_at"]:
-            source["finished_at"] = source["finished_at"].strftime("%Y-%m-%d %H:%M:%S")
+            source["finished_at"] = source["finished_at"].strftime(
+                "%Y-%m-%d %H:%M:%S")
     return JsonResponse({
         "sources": sources
     })
@@ -104,7 +106,8 @@ def run(request: HttpRequest, source_id: int) -> JsonResponse:
 @login_required
 def stop(request: HttpRequest, source_id: int) -> JsonResponse:
     """
-    Mark the spceified Source scraper as stopped (ACHTUNG! The related background processes may still be running).
+    Mark the spceified Source scraper as stopped (ACHTUNG! The related \
+    background processes may still be running).
     :param request: an HTTP request
     :param source_id the Source ID of the PBOTS to stop
     :return: a dict with a "message" key (the operation result)
@@ -130,6 +133,11 @@ def test(request: HttpRequest) -> JsonResponse:
     """
     publications = [{
         "id": 421,
+        # pylint: disable=line-too-long
+        # Rationale:
+        #   - I prefer to keep this URL on a single line. Perhaps I could move it
+        #     to a constant of some sort, but it would go against the spirit of
+        #     this simple test.
         "url": "http://halleyweb.com/c11111/mc/mc_matri_gridev_dettaglio.php?x=1&id_pubbl=11111&interno=0",
         "number": "948",
         "publisher": "Ufficio Stato Civile",

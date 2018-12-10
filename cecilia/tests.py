@@ -12,6 +12,6 @@ DHT22 temperature/humidity sensor data.
 :license: GNU AGPL version 3, see LICENSE for more details.
 """
 
-from django.test import TestCase
+# from django.test import TestCase
 
 # Create your tests here.

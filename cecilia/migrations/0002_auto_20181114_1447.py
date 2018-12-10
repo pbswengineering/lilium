@@ -20,6 +20,10 @@ def insert_default_sensors(apps, schema_editor) -> None:
     :param apps:
     :param schema_editor:
     """
+    # pylint: disable=unused-argument,invalid-name
+    # Rationale:
+    #   - This is the default signature of ORM RunPython operations.
+    #   - The "Sensor" variable is a class name.
     Sensor = apps.get_model("cecilia", "Sensor")
     Sensor(id=1, name="living_room", type="DHT22", specs="Temp. ± 0.5° / Humidity ± 2%").save()
     Sensor(id=2, name="attic", type="DHT22", specs="Temp. ± 0.5° / Humidity ± 2%").save()
@@ -30,11 +34,9 @@ class Migration(migrations.Migration):
     """
     Add the default Cecilia's sensors to the Sensor table.
     """
-    
     dependencies = [
         ('cecilia', '0001_initial'),
     ]
-
     operations = [
         migrations.RunPython(insert_default_sensors)
     ]

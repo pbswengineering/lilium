@@ -57,11 +57,10 @@ class SensorReading(models.Model):
         """
         if self.temperature is None or self.humidity is None:
             return ""
-        elif self.temperature >= 25 or self.humidity <= 20 or self.humidity >= 80:
+        if self.temperature >= 25 or self.humidity <= 20 or self.humidity >= 80:
             return "card-red"
-        elif self.temperature >= 23:
+        if self.temperature >= 23:
             return "card-yellow"
-        elif self.temperature >= 19:
+        if self.temperature >= 19:
             return "card-green"
-        else:
-            return "card-blue"
+        return "card-blue"

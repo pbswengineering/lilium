@@ -19,4 +19,7 @@ from django.core.wsgi import get_wsgi_application
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'lilium.settings')
 
+# pylint: disable=invalid-name
+# Rationale:
+#   - This is a WSGI standard name.
 application = get_wsgi_application()

@@ -63,23 +63,25 @@ def _get_sensor_data_as_dict(sensor: Sensor, max_results: int) -> Dict:
     Return the sensor data and readings as dict.
     :param sensor: the desired sensor
     :param max_results: maximum number of readings that will be returned
-    :return: a dict: name, type, specs, readings (a list of dicts with temperature, humidity, tstamp)
+    :return: a dict: name, type, specs, readings (a list of dicts with \
+                     temperature, humidity, tstamp)
     """
     # Since Django queries are lazy, the following statement
     # adds a LIMIT clause to the SQL query.
-    last_readings = SensorReading.objects.filter(sensor=sensor).order_by("-tstamp")[:max_results]
+    last_readings = SensorReading.objects.filter(
+        sensor=sensor).order_by("-tstamp")[:max_results]
     json_response = model_to_dict(sensor, fields=["name", "type", "specs"])
     json_response["readings"] = []
-    for x in last_readings:
+    for reading in last_readings:
         json_reading = {
-            "temperature": x.temperature,
-            "humidity": x.humidity,
-            "tstamp": x.tstamp.strftime("%Y-%m-%d %H:%M"),
+            "temperature": reading.temperature,
+            "humidity": reading.humidity,
+            "tstamp": reading.tstamp.strftime("%Y-%m-%d %H:%M"),
         }
         json_response["readings"].append(json_reading)
     json_response["css_class"] = ""
     json_response["reachable"] = False
-    if len(last_readings) > 0:
+    if last_readings:
         last_reading = last_readings[0]
         now = timezone.now()
         last_contact_seconds_ago = (now - last_reading.tstamp).total_seconds()
@@ -101,6 +103,8 @@ def sensor_data(request: WSGIRequest, sensor_name: str) -> JsonResponse:
     "status" and value "ok"
     """
     sensor = get_object_or_404(Sensor, name=sensor_name)
+    # If a reading has been sent via POST, save it to the DB
+    # and return some sort of feedback.
     if request.method == "POST":
         temperature = request.POST.get("temperature")
         # The temperature is collected as Celsius * 10
@@ -109,15 +113,16 @@ def sensor_data(request: WSGIRequest, sensor_name: str) -> JsonResponse:
         humidity = request.POST.get("humidity")
         if humidity:
             humidity = float(humidity)
-        SensorReading(tstamp=timezone.now(),
-                      temperature=temperature,
-                      humidity=humidity,
-                      sensor=sensor).save()
+            SensorReading(tstamp=timezone.now(),
+                          temperature=temperature,
+                          humidity=humidity,
+                          sensor=sensor).save()
         return JsonResponse({"status": "ok"})
-    else:
-        max_results = int(request.GET.get("max_results", 1440))
-        json_response = _get_sensor_data_as_dict(sensor, max_results)
-        return JsonResponse(json_response)
+    # To GET requests, instead, return only a list of
+    # recent readings for the specified sensor.
+    max_results = int(request.GET.get("max_results", 1440))
+    json_response = _get_sensor_data_as_dict(sensor, max_results)
+    return JsonResponse(json_response)
 
 
 @login_required
@@ -145,8 +150,8 @@ def blueprint(request: HttpRequest, sensor_name: str) -> HttpResponse:
     :param sensor_name: name of the sensor (e.g. living_room, attic, basement)
     :return: the floor map for the specified sensor, as PNG image
     """
-    image_file = settings.CECILIA_BLUEPRINTS.get(sensor_name)
-    if not image_file:
+    image_file_name = settings.CECILIA_BLUEPRINTS.get(sensor_name)
+    if not image_file_name:
         return redirect(static("/img/cecilia/blueprint_default.png"))
-    with open(image_file, "rb") as f:
-        return HttpResponse(f.read(), content_type="image/png")
+    with open(image_file_name, "rb") as image_file:
+        return HttpResponse(image_file.read(), content_type="image/png")

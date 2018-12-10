@@ -13,8 +13,9 @@ Scraper for the register of the "Comune di Montecastrilli".
 
 import json
 import re
-import requests
 from typing import Dict, List, Optional
+
+import requests
 
 from bs4 import BeautifulSoup
 from bs4.element import Tag

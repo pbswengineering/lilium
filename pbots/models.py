@@ -76,6 +76,9 @@ class Publication(models.Model):
     """
     Publication of a register (or a website, in general).
     """
+    # pylint: disable=too-many-instance-attributes
+    # Rationale:
+    #   - It just reflects the underlying table data model, which is normalised.
     url = models.CharField(max_length=2048, blank=True, null=True)
     number = models.CharField(max_length=256, blank=True, null=True)
     publisher = models.CharField(max_length=256, blank=True, null=True)

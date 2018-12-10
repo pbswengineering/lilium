@@ -29,10 +29,15 @@ from django.contrib import admin
 from django.urls import include, path
 from django.views.generic.base import RedirectView
 
+# pylint: disable=invalid-name
+# Rationale:
+#   - urlpatterns is a Django standard name.
+
 urlpatterns = [
     path("cecilia/", include("cecilia.urls")),
     path("pbots/", include("pbots.urls")),
     path("admin/", admin.site.urls),
     path("accounts/", include("django.contrib.auth.urls")),
-    path("", RedirectView.as_view(url="/cecilia/")),  # By default show the Cecilia dashboard
+    # By default show the Cecilia dashboard
+    path("", RedirectView.as_view(url="/cecilia/")),
 ]

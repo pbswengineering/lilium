@@ -18,7 +18,7 @@ from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
 
 
-def view_or_basicauth(view, request, test_func, realm="", *args, **kwargs):
+def view_or_basicauth(view, request, test_func, realm, *args, **kwargs):
     """
     This is a helper function used by both 'logged_in_or_basicauth' and
     'has_perm_or_basicauth' that does the nitty of determining if they
@@ -38,7 +38,8 @@ def view_or_basicauth(view, request, test_func, realm="", *args, **kwargs):
             # NOTE: We are only support basic authentication for now.
             #
             if auth[0].lower() == "basic":
-                uname, passwd = base64.b64decode(auth[1]).decode('utf-8').split(':', 1)
+                uname, passwd = base64.b64decode(
+                    auth[1]).decode('utf-8').split(':', 1)
                 user = authenticate(username=uname, password=passwd)
                 if user is not None:
                     if user.is_active:

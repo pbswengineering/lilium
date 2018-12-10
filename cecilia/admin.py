@@ -12,6 +12,6 @@ an API to show and collect temperature/humidity sensor data.
 :license: GNU AGPL version 3, see LICENSE for more details.
 """
 
-from django.contrib import admin
+# from django.contrib import admin
 
 # Register your models here.
