@@ -8,3 +8,4 @@ Makefile.local
 /.idea
 /.idea/*
 /.vscode
+/venv

@@ -51,6 +51,9 @@ Main layout for all Lilium apps.
                             <a class="dropdown-item" href="{% url 'cecilia:sensor_details' sensor_name='basement' %}">Basement</a>
                         </div>
                     </li>
+                    <li class="nav-item{% if navigation == "dahlia" %} active{% endif %}">
+                        <a class="nav-link" href="{% url 'dahlia:index' %}">Dahlia</a>
+                    </li>
                 </ul>
                 <ul class="navbar-nav">
                     <li>

@@ -28,6 +28,7 @@ install:
 	--exclude logs \
 	--exclude __pycache__ \
 	--exclude .idea \
+	--exclude venv \
 	$(prod_ssh_user)@$(prod_ssh_host):$(prod_ssh_directory)
 
 clonedb:

@@ -39,6 +39,7 @@ ALLOWED_HOSTS = [
 
 INSTALLED_APPS = [
     "cecilia.apps.CeciliaConfig",
+    "dahlia.apps.DahliaConfig",
     "pbots.apps.PbotsConfig",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -119,8 +120,9 @@ STATICFILES_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     os.path.join(BASE_DIR, "lilium/static/"),
-    os.path.join(BASE_DIR, "pbots/static/"),
     os.path.join(BASE_DIR, "cecilia/static/"),
+    os.path.join(BASE_DIR, "dahlia/static/"),
+    os.path.join(BASE_DIR, "pbots/static/"),
 )
 
 # Logging

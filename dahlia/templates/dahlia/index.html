@@ -1,0 +1,24 @@
+{% extends 'lilium/base.html' %}
+
+{% comment %}
+dahlia/index.html
+~~~~~~~~~~~~~~~~~
+
+Dahlia dashboard.
+
+:copyright: (c) 2018 Paolo Paolo Bernardi.
+:license: GNU AGPL version 3, see LICENSE for more details.
+{% endcomment %}
+{% load staticfiles %}
+
+{% block title %}Dahlia{% endblock %}
+
+{% block navigation %}
+    {% with "dahlia" as navigation %}
+        {{ block.super }}
+    {% endwith %}
+{% endblock %}
+
+{% block main %}
+    <p>Work in progress...</p>
+{% endblock %}
