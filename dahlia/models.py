@@ -23,12 +23,22 @@ class Category(models.Model):
     name = models.CharField(max_length=256)
     parent = models.ForeignKey("self", on_delete=models.CASCADE, blank=True, null=True)
 
+    class Meta:
+        """
+        Django makes plurals just by appending an "s".
+        """
+        verbose_name_plural = "categories"
+
     def __str__(self) -> str:
         """
         Return a human-readable string representation of the Category.
         :return: the category name
         """
-        return self.name
+        full_name = self.name
+        obj = self
+        if obj.parent:
+            full_name = "{} / {}".format(str(self.parent), full_name)
+        return full_name
 
 
 class Document(models.Model):

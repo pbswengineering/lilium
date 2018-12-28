@@ -43,6 +43,7 @@ Dahlia dashboard.
 {% block javascript %}
     <script src="{% static 'js/dahlia/index.js' %}"></script>
     <script>
-        init_dahlia_index();
+        var url_category_tree = "{% url 'dahlia:api_category_tree' %}";
+        init_dahlia_index(url_category_tree);
     </script>
 {% endblock %}

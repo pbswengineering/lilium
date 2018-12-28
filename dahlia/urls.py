@@ -24,4 +24,5 @@ app_name = "dahlia"
 
 urlpatterns = [
     path("", views.index, name="index"),
+    path("api/category_tree/", views.category_tree, name="api_category_tree"),
 ]

@@ -12,8 +12,10 @@ Views for Dahlia, a simple document management system.
 """
 
 from django.contrib.auth.decorators import login_required
-from django.http import HttpRequest, HttpResponse
+from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.shortcuts import render
+
+from .models import Category
 
 
 @login_required
@@ -24,3 +26,21 @@ def index(request: HttpRequest) -> HttpResponse:
     :return: an overview of Dahlia's documents
     """
     return render(request, "dahlia/index.html")
+
+
+@login_required
+def category_tree(request: HttpRequest) -> JsonResponse:
+    """
+    Return the category tree, in the JSTree "id/parent" format.
+    :param request: HTTP request, usually GET
+    :return: a JSON object with the category tree
+    """
+    categories = Category.objects.all().order_by("id")
+    json_response = {"categories": []}
+    for category in categories:
+        json_response["categories"].append({
+            "id": category.id,
+            "parent": category.parent_id or "#",
+            "text": category.name,
+        })
+    return JsonResponse(json_response)

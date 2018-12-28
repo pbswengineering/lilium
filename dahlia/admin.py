@@ -12,6 +12,8 @@ a simple document management system.
 :license: GNU AGPL version 3, see LICENSE for more details.
 """
 
-# from django.contrib import admin
+from django.contrib import admin
 
-# Register your models here.
+from .models import Category
+
+admin.site.register(Category)
