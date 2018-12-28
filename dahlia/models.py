@@ -61,3 +61,12 @@ class Revision(models.Model):
     tstamp = models.DateTimeField()
     description = models.CharField(max_length=4096)
     author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+
+
+class File(models.Model):
+    """
+    A revision has zero or more files. Each file is stored in the
+    local file system.
+    """
+    path = models.CharField(max_length=1024)
+    revision = models.ForeignKey(Revision, on_delete=models.CASCADE)

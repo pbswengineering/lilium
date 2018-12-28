@@ -80,3 +80,8 @@ CECILIA_BLUEPRINTS = {
 
 PHANTOMJS_EXE = "/usr/bin/phantomjs"
 CASPERJS_EXE = "/usr/local/bin/casperjs"
+
+# Local directory used by Dahlia to store documents.
+# It should be an absolute path.
+
+DAHLIA_BASE_DIR = "/directory"

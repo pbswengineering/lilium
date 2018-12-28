@@ -18,6 +18,7 @@ Main layout for all Lilium apps.
     <title>{% block title %}{% endblock %} - Lilium</title>
     <link rel="stylesheet" href="{% static 'vendor/bootstrap-4.1.3/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'vendor/fontawesome-free-5.5.0-web/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/jstree-3.3.7/themes/default/style.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/lilium.css' %}">
     {% block header %}
     {% endblock %}
@@ -111,6 +112,7 @@ Main layout for all Lilium apps.
 <script src="{% static 'vendor/popperjs-1.14.3/js/popper.min.js' %}"></script>
 <script src="{% static 'vendor/bootstrap-4.1.3/js/bootstrap.bundle.min.js' %}"></script>
 <script src="{% static 'vendor/canvasjs-1.7.0/js/jquery.canvasjs.min.js' %}"></script>
+<script src="{% static 'vendor/jstree-3.3.7/jstree.min.js' %}"></script>
 {% block javascript %}
 {% endblock %}
 </body>

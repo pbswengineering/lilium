@@ -20,5 +20,29 @@ Dahlia dashboard.
 {% endblock %}
 
 {% block main %}
-    <p>Work in progress...</p>
+    <div class="row">
+        <div class="col">
+            <div id="category-tree">
+    <!-- in this example the tree is populated from inline HTML -->
+    <ul>
+      <li>Root node 1
+        <ul>
+          <li id="child_node_1">Child node 1</li>
+          <li>Child node 2</li>
+        </ul>
+      </li>
+      <li>Root node 2</li>
+    </ul>
+            </div>
+        </div>
+        <div class="col">
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script src="{% static 'js/dahlia/index.js' %}"></script>
+    <script>
+        init_dahlia_index();
+    </script>
 {% endblock %}
