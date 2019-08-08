@@ -22,6 +22,7 @@ class Sensor(models.Model):
     name = models.CharField(max_length=256)
     type = models.CharField(max_length=256)
     specs = models.CharField(max_length=256)
+    visible = models.BooleanField(default=True)
 
     def __str__(self) -> str:
         """

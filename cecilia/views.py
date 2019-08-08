@@ -37,7 +37,7 @@ def index(request: HttpRequest) -> HttpResponse:
     """
     sensors = Sensor.objects.all().order_by("id")
     context = {
-        "sensors": [{"name": x.name} for x in sensors],
+        "sensors": [{"name": x.name} for x in sensors if x.visible],
     }
     return render(request, "cecilia/index.html", context)
 
@@ -136,6 +136,8 @@ def all_sensor_data(request: HttpRequest) -> JsonResponse:
     sensors = Sensor.objects.all().order_by("id")
     json_response = {"sensors": []}
     for sensor in sensors:
+        if not sensor.visible:
+            continue
         # Since the sensors roughly perform 1 reading per minute, 1440 maximum results
         # are more or less the readings of the last 24 hours
         json_response["sensors"].append(_get_sensor_data_as_dict(sensor, 1440))
