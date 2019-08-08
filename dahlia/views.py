@@ -12,17 +12,11 @@ Views for Dahlia, a simple document management system.
 """
 
 from django.contrib.auth.decorators import login_required
-<<<<<<< HEAD
 from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.shortcuts import render
 
 from .models import Category
 
-=======
-from django.http import HttpRequest, HttpResponse
-from django.shortcuts import render
-
->>>>>>> Added dahlia app stub
 
 @login_required
 def index(request: HttpRequest) -> HttpResponse:
@@ -32,7 +26,6 @@ def index(request: HttpRequest) -> HttpResponse:
     :return: an overview of Dahlia's documents
     """
     return render(request, "dahlia/index.html")
-<<<<<<< HEAD
 
 
 @login_required
@@ -51,5 +44,3 @@ def category_tree(request: HttpRequest) -> JsonResponse:
             "text": category.name,
         })
     return JsonResponse(json_response)
-=======
->>>>>>> Added dahlia app stub

@@ -24,8 +24,5 @@ app_name = "dahlia"
 
 urlpatterns = [
     path("", views.index, name="index"),
-<<<<<<< HEAD
     path("api/category_tree/", views.category_tree, name="api_category_tree"),
-=======
->>>>>>> Added dahlia app stub
 ]

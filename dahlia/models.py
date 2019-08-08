@@ -23,29 +23,22 @@ class Category(models.Model):
     name = models.CharField(max_length=256)
     parent = models.ForeignKey("self", on_delete=models.CASCADE, blank=True, null=True)
 
-<<<<<<< HEAD
     class Meta:
         """
         Django makes plurals just by appending an "s".
         """
         verbose_name_plural = "categories"
 
-=======
->>>>>>> Added dahlia app stub
     def __str__(self) -> str:
         """
         Return a human-readable string representation of the Category.
         :return: the category name
         """
-<<<<<<< HEAD
         full_name = self.name
         obj = self
         if obj.parent:
             full_name = "{} / {}".format(str(self.parent), full_name)
         return full_name
-=======
-        return self.name
->>>>>>> Added dahlia app stub
 
 
 class Document(models.Model):
@@ -78,7 +71,6 @@ class Revision(models.Model):
     tstamp = models.DateTimeField()
     description = models.CharField(max_length=4096)
     author = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
-<<<<<<< HEAD
 
 
 class File(models.Model):
@@ -88,5 +80,3 @@ class File(models.Model):
     """
     path = models.CharField(max_length=1024)
     revision = models.ForeignKey(Revision, on_delete=models.CASCADE)
-=======
->>>>>>> Added dahlia app stub
