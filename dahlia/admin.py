@@ -12,8 +12,14 @@ a simple document management system.
 :license: GNU AGPL version 3, see LICENSE for more details.
 """
 
+<<<<<<< HEAD
 from django.contrib import admin
 
 from .models import Category
 
 admin.site.register(Category)
+=======
+# from django.contrib import admin
+
+# Register your models here.
+>>>>>>> Added dahlia app stub

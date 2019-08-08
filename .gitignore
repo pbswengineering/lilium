@@ -3,7 +3,7 @@
 __pycache__
 local_settings.py
 /db.sqlite3
-logs/*.log
+logs/*.log*
 Makefile.local
 /.idea
 /.idea/*
