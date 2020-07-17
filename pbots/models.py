@@ -21,11 +21,11 @@ class Source(models.Model):
     """
     name = models.CharField(max_length=256)
     command = models.CharField(max_length=1024)
-    running = models.BooleanField(default=False)
+    running = models.BooleanField(default=False, null=True)
     started_at = models.DateTimeField(blank=True, null=True)
     finished_at = models.DateTimeField(blank=True, null=True)
-    executions = models.IntegerField(default=0)
-    last_execution_ok = models.BooleanField(default=True)
+    executions = models.IntegerField(default=0, null=True)
+    last_execution_ok = models.BooleanField(default=True, null=True)
     last_id = models.IntegerField(blank=True, null=True)
 
     def __str__(self) -> str:
