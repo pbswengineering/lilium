@@ -218,7 +218,7 @@ def _run_scraper_phantomjs(script_file: str,
     output = subprocess.check_output(
         [settings.PHANTOMJS_EXE, script_file] + arguments)
     # Remove spurious errors
-    output = re.findall("\\[.+\\]", output.decode("utf-8"))[0]
+    output = re.findall("\\[.*\\]", output.decode("utf-8"))[0]
     _add_publications(source, logger, output)
 
 
