@@ -16,6 +16,7 @@ from email.mime.image import MIMEImage
 import json
 from logging import getLogger, Logger
 import os
+import re
 import subprocess
 import sys
 import threading
@@ -216,6 +217,8 @@ def _run_scraper_phantomjs(script_file: str,
     script_file = os.path.join(tools_dir, script_file)
     output = subprocess.check_output(
         [settings.PHANTOMJS_EXE, script_file] + arguments)
+    # Remove spurious errors
+    output = re.findall("\\[.+\\]", output.decode("utf-8"))[0]
     _add_publications(source, logger, output)
 
 
