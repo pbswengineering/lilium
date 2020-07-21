@@ -255,7 +255,11 @@ def _run_scraper_python(script_file: str,
     """
     tools_dir = os.path.join(os.path.dirname(__file__), "tools")
     script_file = os.path.join(tools_dir, script_file)
-    output = subprocess.check_output([sys.executable, script_file] + arguments)
+    # Hugly hack to avoid crashes when running under uwsgi
+    pyexe = sys.executable
+    if pyexe.endswith("uwsgi"):
+        pyexe = pyexe[:-len("uwsgi")] + "python"
+    output = subprocess.check_output([pyexe, script_file] + arguments)
     _add_publications(source, logger, output)
 
 
