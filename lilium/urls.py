@@ -25,6 +25,8 @@ Including another URLconf
 :license: GNU AGPL version 3, see LICENSE for more details.
 """
 
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 from django.views.generic.base import RedirectView
@@ -39,6 +41,6 @@ urlpatterns = [
     path("pbots/", include("pbots.urls")),
     path("admin/", admin.site.urls),
     path("accounts/", include("django.contrib.auth.urls")),
-    # By default show the Cecilia dashboard
-    path("", RedirectView.as_view(url="/cecilia/")),
-]
+    # By default show the PBOTS status
+    path("", RedirectView.as_view(url="/pbots/")),
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
