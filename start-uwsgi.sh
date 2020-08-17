@@ -1,6 +1,7 @@
 #!/bin/bash
 # vim: tabstop=8 expandtab shiftwidth=4 softtabstop=4
 
+make checkdb  # repair tables if needed
 UWSGI="$HOME/anaconda3/bin/uwsgi"
 if [ -f "$UWSGI" ]; then
     echo "Using $UWSGI"

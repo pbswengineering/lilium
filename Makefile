@@ -36,3 +36,6 @@ clonedb:
 	'($(prod_mysqldump) --databases -h $(prod_mysqlhost) -u $(prod_mysqluser) --password=$(prod_mysqlpass) $(prod_mysqldb) | gzip)' | \
 	gunzip | \
 	mysql -h $(local_mysqlhost) -u $(local_mysqluser) --password=$(local_mysqlpass)
+
+checkdb:
+	mysqlcheck -u $(prod_mysqluser) --password=$(prod_mysqlpass) --auto-repair ${prod_mysqldb}
