@@ -39,8 +39,6 @@ ALLOWED_HOSTS = [
 
 INSTALLED_APPS = [
     "cecilia.apps.CeciliaConfig",
-    "dahlia.apps.DahliaConfig",
-    "pbots.apps.PbotsConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -121,8 +119,6 @@ STATICFILES_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
     os.path.join(BASE_DIR, "lilium/static/"),
     os.path.join(BASE_DIR, "cecilia/static/"),
-    os.path.join(BASE_DIR, "dahlia/static/"),
-    os.path.join(BASE_DIR, "pbots/static/"),
 )
 
 # Logging
@@ -161,33 +157,6 @@ LOGGING = {
         },
     },
 }
-
-# Personalised handlers and loggers for PBOTS scraper.
-# Useful, since they run as separate and potentially time-overlapped threads.
-
-SCRAPING_SOURCES = [
-    "bollettino_regione_umbria_generale",
-    "bollettino_regione_umbria_avvisi",
-    "bollettino_regione_umbria_informazioni",
-    "albopretorio_comune_acquasparta",
-    "albopretorio_comune_montecastrilli",
-    "matrimoni_comune_montecastrilli",
-    "albopretorio_ic_defilis",
-]
-for source in SCRAPING_SOURCES:
-    LOGGING["handlers"]["file_{}".format(source)] = {
-        "level": "DEBUG",
-        "class": "logging.handlers.RotatingFileHandler",
-        "filename": os.path.join(LOGGING_DIR, "{}.log".format(source)),
-        "formatter": "standard",
-        "maxBytes": 5 * 1024 * 1024,
-        "backupCount": 3,
-    }
-    LOGGING["loggers"]["commands.{}".format(source)] = {
-        "handlers": ["console", "file_{}".format(source)],
-        "level": "DEBUG",
-        "propagate": True,
-    }
 
 # Login/logout
 # https://wsvincent.com/django-user-authentication-tutorial-login-and-logout/

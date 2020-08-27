@@ -12,17 +12,6 @@ This file, required by the standard settings.py, must NOT BE committed.
 :license: GNU AGPL version 3, see LICENSE for more details.
 """
 
-# Base URL of the production web application, used by
-# pbots/tools/trigger-pbot.py (the script for cron)
-
-BASE_URL = "http://192.168.1.10:1234"
-
-# User and password for external API calls, used by
-# pbots/tools/trigger_pbots.py (the script for cron)
-
-API_USERNAME = "username"
-API_PASSWORD = "password"
-
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
@@ -75,13 +64,3 @@ CECILIA_BLUEPRINTS = {
     "attic": "/directory/map_attic.png",
     "basement": "/directory/map_basement.png",
 }
-
-# PhantomJS and CasperJS executables (required by PBOTS)
-
-PHANTOMJS_EXE = "/usr/bin/phantomjs"
-CASPERJS_EXE = "/usr/local/bin/casperjs"
-
-# Local directory used by Dahlia to store documents.
-# It should be an absolute path.
-
-DAHLIA_BASE_DIR = "/directory"

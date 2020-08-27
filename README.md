@@ -13,11 +13,9 @@
 
 - [What is Lilium](#what-is-lilium)
     - [Cecilia](#cecilia)
-    - [PBOTS](#pbots)
 - [Installation](#installation)
     - [Lilium setup](#lilium-setup)
     - [Cecilia setup](#cecilia-setup)
-    - [PBOTS setup](#PBOTS-setup)
 - [Code names](#code-names)
 - [License](#license)
 
@@ -25,9 +23,11 @@
 
 Lilium is a software system composed by a varied set of modules; the only thing that they have in common is being developed and used by Paolo Bernardi.
 
-So far, Lilium includes the following modules:
+So far, Lilium includes the following module:
   * **Cecilia**, a network of temperature and humidity sensors deployed throughout Paolo Bernardi's home (whose code name is, incidentally, Cecilia).
-  * **PBOTS**, a collection of web scrapers and a mailing system to notify updates of the target data sources.
+
+The project used to include the PBOTS module as well, but it was later 
+[refactored into a separate application](https://www.github.com/bernarpa/pbots/).
 
 The most prominent feature of the Lilium system is the web interface: Lilium is a Django project and each module is an app that implements some sort of dashboard or "command and control" interface.  However, the modules usually need some back-end support programs as well: they can be found in the `tools` directory within each module's Django app.
 
@@ -54,17 +54,6 @@ In the `tools` sub-directory there are the collector scripts and the Arduino fir
 
 ![Image](.readme-files/cecilia_details.png)
 
-### PBOTS
-
-PBOTS is a set of web scrapers that collects web publications and notifies news ones via email to a set of subscribers.
-
-![Image](.readme-files/pbots.png)
-
-The source code, located in the `pbots` directory, is structured in 3 separate components:
-  1. a web dashboard (the Django views, models, urls, templates and static files) that shows the web scrapers status;
-  2. a set of web scraping scripts (so far there are Python, PhantomJS and CasperJS scripts);
-  3. a script to trigger the PBOTS web scrapers from the command line.
-
 ## Installation
 
 ### Lilium setup
@@ -88,30 +77,6 @@ The setup of Cecilia involves several steps other than Lilium's base configurati
   4. Change the `SERVER_URL` variable in `collectors.py`.
   5. Add the relevant `collector_*.sh` scripts to `/etc/rc.local`.
 
-### PBOTS setup
-
-By default the web scrapers managed by PBOTS run only on demand (by clicking the "Run" button on the PBOTS table). You might want to add some rows to your crontab to run them periodically. For example:
-
-```
-0 18 * * * /opt/bin/python3 /share/homes/rnd/lilium/pbots/tools/trigger_pbots.py 1
-0 12 * * * /opt/bin/python3 /share/homes/rnd/lilium/pbots/tools/trigger_pbots.py 2
-0 14 * * * /opt/bin/python3 /share/homes/rnd/lilium/pbots/tools/trigger_pbots.py 3
-15 14 * * * /opt/bin/python3 /share/homes/rnd/lilium/pbots/tools/trigger_pbots.py 4
-30 14 * * * /opt/bin/python3 /share/homes/rnd/lilium/pbots/tools/trigger_pbots.py 5
-30 18 * * * /opt/bin/python3 /share/homes/rnd/lilium/pbots/tools/trigger_pbots.py 6
-30 12 * * * /opt/bin/python3 /share/homes/rnd/lilium/pbots/tools/trigger_pbots.py 7
-```
-
-The numbers corresponds to the primary key `id` of the `pbots_source` table.
-
-Should you decide to deploy Lilium on a QNAP NAS, as Paolo Bernardi actually did, you might follow this procedure to update the crontab:
-
-```
-# vi /etc/config/crontab          # This file survives to system updates
-# crontab /etc/config/crontab
-# /etc/init.d/cron.sh restart
-```
-
 # License
 
 Lilium is licensed under the terms of the GNU Affero General Public License version 3.
@@ -121,4 +86,3 @@ Lilium is licensed under the terms of the GNU Affero General Public License vers
 As it should be clear by glancing at this README, Paolo Bernardi loves code names: :wink:
   * **Lilium**, the project name, doesn't have a specific meaning: it is just the Latin name for the lily flower. Most importantly, this code name facilitated the design of the project logo since fleur-de-lis outlines are widespread and well-known. A previous attempt at naming the project, "Iris", fell short of a decent logo design.
   * **Cecilia**, the sensor network module name, takes after the code name of Paolo Bernardi's house, which in turn is inspired by its location: St. Cecilia is the patroness saint of [Acquasparta](https://en.wikipedia.org/wiki/Acquasparta).
-  * **PBOTS**, the web scraper and mailing list module, is a pun on Paolo Bernardi name which just sounds good and barely applicable to this context (after all, a scraper is a kind of bot).

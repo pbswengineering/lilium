@@ -6,7 +6,7 @@ lilium.urls
 ~~~~~~~~~~~
 
 URL configuration for Lilium. It includes URL configuration from
-sub-applications (admin, cecilia, pbots...) and some defaults.
+sub-applications (admin, cecilia...) and some defaults.
 
 For more information please see:
     https://docs.djangoproject.com/en/2.1/topics/http/urls/
@@ -37,10 +37,8 @@ from django.views.generic.base import RedirectView
 
 urlpatterns = [
     path("cecilia/", include("cecilia.urls")),
-    path("dahlia/", include("dahlia.urls")),
-    path("pbots/", include("pbots.urls")),
     path("admin/", admin.site.urls),
     path("accounts/", include("django.contrib.auth.urls")),
-    # By default show the PBOTS status
-    path("", RedirectView.as_view(url="/pbots/")),
+    # By default show the Cecilia dashboard
+    path("", RedirectView.as_view(url="/cecilia/")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

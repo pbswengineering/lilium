@@ -38,9 +38,6 @@ Main layout for all Lilium apps.
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item{% if navigation == "pbots" %} active{% endif %}">
-                        <a class="nav-link" href="{% url 'pbots:index' %}">PBOTS</a>
-                    </li>
                     <li class="nav-item dropdown{% if navigation == "cecilia" %} active{% endif %}">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
                            aria-haspopup="true" aria-expanded="false">Cecilia</a>
@@ -51,9 +48,6 @@ Main layout for all Lilium apps.
                             <a class="dropdown-item" href="{% url 'cecilia:sensor_details' sensor_name='attic' %}">Attic</a>
                             <a class="dropdown-item" href="{% url 'cecilia:sensor_details' sensor_name='basement' %}">Basement</a>
                         </div>
-                    </li>
-                    <li class="nav-item{% if navigation == "dahlia" %} active{% endif %}">
-                        <a class="nav-link" href="{% url 'dahlia:index' %}">Dahlia</a>
                     </li>
                 </ul>
                 <ul class="navbar-nav">
