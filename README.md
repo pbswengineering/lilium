@@ -9,7 +9,7 @@
 [![License](https://img.shields.io/github/license/bernarpa/lilium.svg)](https://opensource.org/licenses/AGPL-3.0)
 [![GitHub issues](https://img.shields.io/github/issues/bernarpa/lilium.svg)](https://github.com/bernarpa/lilium/issues)
 
-## Table of content
+## Table of contents
 
 - [What is Lilium](#what-is-lilium)
     - [Cecilia](#cecilia)
@@ -21,7 +21,7 @@
 
 ## What is Lilium
 
-Lilium is a software system composed by a varied set of modules; the only thing that they have in common is being developed and used by Paolo Bernardi.
+Lilium is a software system composed by a set of modules; the only thing that they have in common is being developed and used by Paolo Bernardi.
 
 So far, Lilium includes the following module:
   * **Cecilia**, a network of temperature and humidity sensors deployed throughout Paolo Bernardi's home (whose code name is, incidentally, Cecilia).
@@ -77,11 +77,11 @@ The setup of Cecilia involves several steps other than Lilium's base configurati
   4. Change the `SERVER_URL` variable in `collectors.py`.
   5. Add the relevant `collector_*.sh` scripts to `/etc/rc.local`.
 
-# License
+## License
 
 Lilium is licensed under the terms of the GNU Affero General Public License version 3.
 
-# Code names
+## Code names
 
 As it should be clear by glancing at this README, Paolo Bernardi loves code names: :wink:
   * **Lilium**, the project name, doesn't have a specific meaning: it is just the Latin name for the lily flower. Most importantly, this code name facilitated the design of the project logo since fleur-de-lis outlines are widespread and well-known. A previous attempt at naming the project, "Iris", fell short of a decent logo design.
