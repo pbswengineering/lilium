@@ -60,8 +60,6 @@ In the `tools` sub-directory there are the collector scripts and the Arduino fir
 
 Prerequisites:
   1. Python 3 with Django, BeautifulSoup and Requests.
-  2. PhantomJS
-  3. CasperJS
 
 Lilium can be deployed as a normal Django application:
   1. Copy `lilium/local_settings.py-sample` to `lilium/local_settings.py` and edit the latter to match the local machine's configuration.
